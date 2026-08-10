@@ -1,0 +1,30 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+
+## Visual Studio
+.vs/
+*.userosscache
+*.sln.docstates
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## Test results
+TestResults/
+*.trx
+
+## Secrets and local configuration
+.env
+*.env
+appsettings.*.local.json
+
+## Application-generated output
+research_output.txt
+
+## OS
+.DS_Store
+Thumbs.db
