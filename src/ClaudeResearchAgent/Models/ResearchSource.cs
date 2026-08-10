@@ -13,6 +13,8 @@ public sealed record ResearchSource
     public string? Excerpt { get; init; }
 }
 
+/// <summary>The trust check every <see cref="ResearchSource"/> must pass before it can appear in
+/// a final answer.</summary>
 public static class ResearchSourceValidation
 {
     /// <summary>

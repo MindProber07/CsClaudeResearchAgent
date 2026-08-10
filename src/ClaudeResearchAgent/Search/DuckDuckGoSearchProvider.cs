@@ -29,6 +29,7 @@ public sealed class DuckDuckGoSearchProvider(
 {
     private readonly WebSearchToolOptions _options = options.Value;
 
+    /// <inheritdoc/>
     public async Task<IReadOnlyList<SearchResult>> SearchAsync(string query, CancellationToken cancellationToken)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(query);

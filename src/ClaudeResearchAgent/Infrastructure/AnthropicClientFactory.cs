@@ -11,6 +11,8 @@ namespace ClaudeResearchAgent.Infrastructure;
 /// </summary>
 public static class AnthropicClientFactory
 {
+    /// <summary>Registers <see cref="AnthropicClient"/> as a singleton and exposes its
+    /// <see cref="IMessageService"/> for injection wherever the agent loop needs to talk to Claude.</summary>
     public static IServiceCollection AddAnthropicClient(this IServiceCollection services)
     {
         // AnthropicClient() reads the ANTHROPIC_API_KEY environment variable itself; the presence

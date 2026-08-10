@@ -11,6 +11,9 @@ public static class EnvironmentValidator
 {
     public const string ApiKeyEnvironmentVariable = "ANTHROPIC_API_KEY";
 
+    /// <summary>Returns every configuration/environment problem found — empty when everything is
+    /// usable. Combines <see cref="AgentOptions.Validate"/> with the API-key presence check so
+    /// callers only need one call before building the DI container.</summary>
     public static IReadOnlyList<string> Validate(AgentOptions agentOptions)
     {
         var errors = new List<string>(agentOptions.Validate());

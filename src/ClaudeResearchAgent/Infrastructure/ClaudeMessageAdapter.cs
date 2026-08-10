@@ -13,6 +13,9 @@ namespace ClaudeResearchAgent.Infrastructure;
 /// </summary>
 public static class ClaudeMessageAdapter
 {
+    /// <summary>Converts one registered tool's <see cref="IAgentTool.InputSchema"/> into the SDK's
+    /// <see cref="Tool"/>/<see cref="ToolUnion"/> shape, ready to go in
+    /// <c>MessageCreateParams.Tools</c>.</summary>
     public static ToolUnion BuildToolDefinition(IAgentTool tool)
     {
         var sdkTool = new Tool

@@ -9,8 +9,12 @@ namespace ClaudeResearchAgent.Tools;
 /// </summary>
 public interface IAgentTool
 {
+    /// <summary>The exact tool name Claude must use in a tool_use block, and the key
+    /// <see cref="ToolRegistry"/> registers this implementation under.</summary>
     string Name { get; }
 
+    /// <summary>Sent to Claude as the tool's description — this is what the model reads to decide
+    /// whether and how to call the tool, so it should be precise about purpose and limitations.</summary>
     string Description { get; }
 
     /// <summary>
@@ -21,5 +25,11 @@ public interface IAgentTool
     /// </summary>
     JsonElement InputSchema { get; }
 
+    /// <summary>
+    /// Runs the tool. Must never throw for expected failure modes (bad arguments, network errors,
+    /// ...) — those should come back as <see cref="ToolExecutionResult.Fail"/> so the agent loop can
+    /// hand a safe observation back to Claude. <see cref="ToolRegistry"/> already applies a timeout
+    /// and unexpected-exception guard around every call, so this is a second line of defense.
+    /// </summary>
     Task<ToolExecutionResult> ExecuteAsync(JsonElement arguments, CancellationToken cancellationToken);
 }

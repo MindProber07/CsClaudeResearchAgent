@@ -22,6 +22,9 @@ public sealed class AgentOptions
 
     public int MaxTokens { get; set; } = 4096;
 
+    /// <summary>Returns every invalid setting as a human-readable message — empty when every limit
+    /// is usable. Called from <see cref="Configuration.EnvironmentValidator"/> before the DI
+    /// container is built.</summary>
     public IReadOnlyList<string> Validate()
     {
         var errors = new List<string>();

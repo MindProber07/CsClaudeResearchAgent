@@ -18,6 +18,9 @@ public sealed class ToolRegistry
     private readonly int _maxObservationCharacters;
     private readonly ILogger<ToolRegistry> _logger;
 
+    /// <summary>Registers every tool in <paramref name="tools"/> up front. Throws
+    /// <see cref="InvalidOperationException"/> immediately if two tools share a name — a
+    /// misconfiguration like that should fail at startup, not silently shadow a tool at runtime.</summary>
     public ToolRegistry(IEnumerable<IAgentTool> tools, AgentOptions agentOptions, ILogger<ToolRegistry> logger)
     {
         ArgumentNullException.ThrowIfNull(tools);
@@ -34,6 +37,8 @@ public sealed class ToolRegistry
         }
     }
 
+    /// <summary>Every tool currently registered — used to build the tool schemas sent to Claude
+    /// on each request.</summary>
     public IReadOnlyCollection<IAgentTool> RegisteredTools => _tools.Values;
 
     /// <summary>Adds a tool by its exact name. Throws if that name is already taken.</summary>
@@ -47,6 +52,7 @@ public sealed class ToolRegistry
         }
     }
 
+    /// <summary>Looks up a registered tool by exact name without executing it.</summary>
     public bool TryGet(string name, out IAgentTool? tool) => _tools.TryGetValue(name, out tool);
 
     /// <summary>

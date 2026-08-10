@@ -13,6 +13,8 @@ public sealed class ExecutionTracker
     private readonly List<string> _executedToolNames = [];
     private readonly Dictionary<string, ResearchSource> _retrievedSources = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>Records one successful tool call. Call this only when the tool actually reported
+    /// success — a failed or unknown-tool call must never appear in <see cref="ExecutedToolNames"/>.</summary>
     public void RecordSuccessfulExecution(string toolName, IReadOnlyList<ResearchSource> sources)
     {
         _executedToolNames.Add(toolName);

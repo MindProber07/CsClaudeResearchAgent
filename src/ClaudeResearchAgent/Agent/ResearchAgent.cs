@@ -47,6 +47,7 @@ public sealed class ResearchAgent(
         }
         """;
 
+    /// <inheritdoc/>
     public async Task<ResearchResponse> ResearchAsync(string question, CancellationToken cancellationToken)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(question);

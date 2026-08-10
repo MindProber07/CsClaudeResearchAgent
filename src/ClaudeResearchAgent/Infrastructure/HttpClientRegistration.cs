@@ -11,6 +11,9 @@ public static class HttpClientRegistration
     public const string WikipediaClientName = "Wikipedia";
     public const string DuckDuckGoClientName = "DuckDuckGo";
 
+    /// <summary>Registers the named "Wikipedia" and "DuckDuckGo" <see cref="HttpClient"/>s, each
+    /// with a <see cref="TransientRetryHandler"/> in front and options-driven timeout/User-Agent
+    /// configuration.</summary>
     public static IServiceCollection AddClaudeResearchAgentHttpClients(this IServiceCollection services)
     {
         services.AddHttpClient(WikipediaClientName, (sp, client) =>

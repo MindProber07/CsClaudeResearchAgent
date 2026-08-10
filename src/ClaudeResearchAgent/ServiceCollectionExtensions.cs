@@ -11,6 +11,10 @@ namespace ClaudeResearchAgent;
 /// <summary>Composition root: wires every layer (config, HTTP, tools, Claude client, agent) together.</summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>Binds all configuration sections and registers every layer of the agent — HTTP
+    /// clients, the Anthropic client, tools, the tool registry, the response parser, and
+    /// <see cref="IResearchAgent"/> itself. Call once at startup; everything registered here is a
+    /// singleton, matching the single-user console app's lifetime.</summary>
     public static IServiceCollection AddClaudeResearchAgent(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<WikipediaToolOptions>(configuration.GetSection(WikipediaToolOptions.SectionName));

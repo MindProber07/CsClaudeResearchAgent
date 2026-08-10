@@ -15,16 +15,20 @@ namespace ClaudeResearchAgent.Tools;
 /// </summary>
 public sealed class WikipediaTool(IHttpClientFactory httpClientFactory, ILogger<WikipediaTool> logger) : IAgentTool
 {
+    /// <inheritdoc/>
     public string Name => "wikipedia";
 
+    /// <inheritdoc/>
     public string Description =>
         "Searches Wikipedia for the given query and returns a concise summary of the most relevant " +
         "page along with its canonical URL. Use this for encyclopedic background on a person, place, " +
         "event, or concept.";
 
+    /// <inheritdoc/>
     public JsonElement InputSchema => ToolSchemas.SingleRequiredStringProperty(
         "query", "The topic or question to look up on Wikipedia.");
 
+    /// <inheritdoc/>
     public async Task<ToolExecutionResult> ExecuteAsync(JsonElement arguments, CancellationToken cancellationToken)
     {
         if (!ToolArguments.TryGetRequiredString(arguments, "query", out var query))

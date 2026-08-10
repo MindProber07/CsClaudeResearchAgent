@@ -9,6 +9,8 @@ namespace ClaudeResearchAgent.Configuration;
 /// </summary>
 public static class DotEnvLoader
 {
+    /// <summary>Loads <paramref name="path"/> into the process environment if it exists; a no-op
+    /// otherwise. Safe to call unconditionally at startup.</summary>
     public static void LoadIfPresent(string path = ".env")
     {
         string currentFolder = Path.GetFullPath(path);

@@ -20,16 +20,20 @@ public sealed class SaveTextTool(
     // enough to serialize concurrent tool_use calls without a per-path lock table.
     private static readonly SemaphoreSlim WriteLock = new(1, 1);
 
+    /// <inheritdoc/>
     public string Name => "save_text_to_file";
 
+    /// <inheritdoc/>
     public string Description =>
         "Appends the given research content, with a timestamp, to a local research notes file. " +
         "Use this to preserve findings the user may want to review later. You cannot choose the " +
         "file path — content is always appended to the single configured output file.";
 
+    /// <inheritdoc/>
     public JsonElement InputSchema => ToolSchemas.SingleRequiredStringProperty(
         "content", "The research content to append to the output file.");
 
+    /// <inheritdoc/>
     public async Task<ToolExecutionResult> ExecuteAsync(JsonElement arguments, CancellationToken cancellationToken)
     {
         if (!ToolArguments.TryGetRequiredString(arguments, "content", out var content))

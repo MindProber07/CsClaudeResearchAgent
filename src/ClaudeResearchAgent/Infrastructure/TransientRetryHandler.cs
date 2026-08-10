@@ -19,6 +19,10 @@ public sealed class TransientRetryHandler : DelegatingHandler
 {
     private readonly ResiliencePipeline<HttpResponseMessage> _pipeline;
 
+    /// <param name="maxRetryAttempts">Upper bound on retries after the initial attempt — total
+    /// attempts are <c>maxRetryAttempts + 1</c>.</param>
+    /// <param name="logger">Receives one warning per retry; never receives the final failure (the
+    /// caller logs that, since only it knows the tool-level context).</param>
     public TransientRetryHandler(int maxRetryAttempts, ILogger logger)
     {
         _pipeline = new ResiliencePipelineBuilder<HttpResponseMessage>()

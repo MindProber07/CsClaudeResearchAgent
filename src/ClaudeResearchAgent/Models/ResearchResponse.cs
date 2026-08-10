@@ -17,6 +17,7 @@ public sealed record ResearchResponse
     public required IReadOnlyList<string> ToolsUsed { get; init; }
 }
 
+/// <summary>Field-level validation rules for <see cref="ResearchResponse"/>.</summary>
 public static class ResearchResponseValidation
 {
     /// <summary>

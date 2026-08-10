@@ -6,6 +6,9 @@ namespace ClaudeResearchAgent.Tools;
 /// with a tool_use block, without every tool re-implementing the same defensive checks.</summary>
 internal static class ToolArguments
 {
+    /// <summary>Extracts a non-empty string property. Returns <see langword="false"/> — rather than
+    /// throwing — for a missing, wrong-typed, or blank value, since that's an untrusted model-supplied
+    /// argument, not a programming error.</summary>
     public static bool TryGetRequiredString(JsonElement arguments, string propertyName, out string value)
     {
         value = string.Empty;
