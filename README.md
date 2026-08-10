@@ -20,6 +20,7 @@ required).
 - [Build and run](#build-and-run)
 - [Tests](#tests)
 - [Project structure](#project-structure)
+- [Class diagrams](CsClaudeApiClassDiagram.md) — static structure (companion document)
 - [Tools](#tools)
 - [The agent loop](#the-agent-loop)
 - [Structured output](#structured-output)
